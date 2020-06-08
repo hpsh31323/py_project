@@ -1,0 +1,17 @@
+branch-defaults:
+  default:
+    environment: django-env2
+global:
+  application_name: django-project
+  branch: null
+  default_ec2_keyname: null
+  default_platform: Python 3.7
+  default_region: ap-southeast-1
+  include_git_submodules: true
+  instance_profile: null
+  platform_name: null
+  platform_version: null
+  profile: eb-cli
+  repository: null
+  sc: null
+  workspace_type: Application
