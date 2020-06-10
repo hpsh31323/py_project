@@ -1,6 +1,8 @@
 branch-defaults:
   default:
     environment: django-env2
+  master:
+    environment: django-env2
 global:
   application_name: django-project
   branch: null
