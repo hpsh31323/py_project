@@ -15,7 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls import url
+
+from py_start.views import project_index, pos_system_index, inner_index, inner_login_page
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    url(r'^$', project_index),
+    url(r'^pos_system_index/$', pos_system_index),
+    url(r'^inner_index/$', inner_index),
+    url(r'^inner_login_page/$', inner_login_page)
+
 ]
