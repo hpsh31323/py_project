@@ -78,22 +78,24 @@
 
     <section class="jumbotron text-center">
         <div class="container">
-            <h1>TEST example</h1>
+            <h1>作品集</h1>
 
             <p class="lead text-muted">nothing here</p>
             <p>
             <table align="center">
                 <tr>
                     <td>
-                        <form action="/pos_system_index/" method="post">{% csrf_token %}
-                            <button class="btn btn-primary my-2" type="submit">前往POS系統</button>
+                        <form action="/inner_login_page/" method="post">{% csrf_token %}
+                            <button class="btn btn-primary my-2" type="submit">POS系統</button>
                         </form>
                         </td>
+                    <!--
                     <td>
                         <form action="/inner_login_page/" method="post">{% csrf_token %}
                         <button class="btn btn-secondary my-2" type="submit">前往後台</button>
                             </form>
                     </td>
+                    -->
                 </tr>
             </table>
             </p>

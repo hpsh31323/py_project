@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+
+<html>
+<!--
+<%
+String message = (String)request.getAttribute("message");
+if(message != null) {
+%>
+<script type="text/javascript" language="javascript">
+alert("<%=message%>");  
+
+window.location='dsg_001_inner/boss/index.jsp' ;  
+</script>
+<%
+}
+%>
+<%
+String errorInfo = (String)request.getAttribute("Error");
+if(errorInfo != null) {
+%>
+<script type="text/javascript" language="javascript">
+alert("<%=errorInfo%>");  
+
+window.location='dsg_001_inner/boss/index.jsp' ;        // 跳轉登入頁
+</script>
+<%
+}
+%>
+-->
+
+
+<head>
+    <title>Manager Index</title>
+    {% load static %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
+    <link href={% static "css/bootstrap.css" %} rel="stylesheet">
+    <link href={% static "css/carousel.css" %} rel="stylesheet">
+    <link href={% static "css/album.css" %} rel="stylesheet">
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script
+            src="https://code.jquery.com/jquery-2.2.4.js"
+            integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
+            crossorigin="anonymous"></script>
+    <script src={% static "js/bootstrap.js" %}></script>
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body style="background-color:#eff9ff;">
+<header>
+    <nav class="navbar navbar-light  navbar-expand-md  fixed-top" style="background-color: #6fcaf7;">
+        <!-- 圖片的位置和連結,目前是連到首頁 -->
+        <a class="navbar-brand" href="../../boss_index"><img src={% static "image/ball.jpeg" %} height="50"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../report">銷售報表</a>
+                </li>
+
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../product">產品設定</a>
+                </li>
+
+                <!--
+                    <li class="nav-item">
+                      <a class="nav-link" href="promot.jsp">行銷活動</a>
+                    </li>
+
+
+                     <li class="nav-item">
+                      <a class="nav-link" href="service.jsp">服務設定</a>
+                    </li>
+                    -->
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../crew">人員登錄</a>
+                </li>
+
+
+                <!-- 二個按紐在頁面最右上,登出和購物車  -->
+            </ul>
+            &nbsp;
+            <button class="btn btn-outline-info " type="button"
+                    type="button" data-toggle="modal" data-target="#logout">
+                <img src={% static "image/logout.png" %} height="25">
+            </button>
+        </div>
+    </nav>
+
+    <div class="modal fade" id="crewmodal" tabindex="-1" role="dialog" aria-hidden="false">
+        <div class="modal-dialog  " role="document">
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="logout" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">登出</h5>
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+
+                    <div>確認登出</div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <form action="../../inner_logout" method="post">
+                        <input type="hidden" name="path" value="dsg_001_inner/index.jsp">
+                        <button type="submit" class="btn btn-danger">登出</button>
+                    </form>
+                    <button type="button" class="btn btn-primary"
+                            data-dismiss="modal">取消
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div class="row">
+
+    <div class="col-lg-6">
+        <div class="py-3 text-center">
+            <h2>當日訂單狀況</h2>
+        </div>
+        <div class="card border-info mb-3">
+            <div class="card-body text-dark">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div>外送訂單筆數：</div>
+                        <div>外送訂單金額：</div>
+                        <div>門市訂單筆數：</div>
+                        <div>門市訂單金額：</div>
+                        <div>合計訂單總額：</div>
+
+                    </div>
+                    <div class="col-lg-6">
+                        <div>定單取消筆數：</div>
+                        <div>定單取消金額：</div>
+                        <div>銷售第一名:/(杯)</div>
+                        <div>銷售第二名:/(杯)</div>
+                        <div>銷售第三名:/(杯)</div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div>外送訂單筆數：0</div>
+                        <div>外送訂單金額：0</div>
+                        <div>門市訂單筆數：0</div>
+                        <div>門市訂單金額：0</div>
+                        <div>合計訂單總額：0</div>
+
+                    </div>
+                    <div class="col-lg-6">
+                        <div>定單取消筆數：0</div>
+                        <div>定單取消金額：0</div>
+                        <div>銷售第一名:NULL / 0 (杯)</div>
+                        <div>銷售第二名:NULL / 0 (杯)</div>
+                        <div>銷售第三名:NULL / 0 (杯)</div>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="py-3 text-center">
+            <h2>前日訂單狀況</h2>
+        </div>
+        <div class="card border-info mb-3">
+            <div class="card-body text-dark">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div>外送訂單筆數：</div>
+                        <div>外送訂單金額：</div>
+                        <div>門市訂單筆數：</div>
+                        <div>門市訂單金額：</div>
+                        <div>合計訂單總額：</div>
+
+                    </div>
+                    <div class="col-lg-6">
+                        <div>定單取消筆數：</div>
+                        <div>定單取消金額：</div>
+                        <div>銷售第一名:/(杯)</div>
+                        <div>銷售第二名:/(杯)</div>
+                        <div>銷售第三名:/(杯)</div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div>外送訂單筆數：0</div>
+                        <div>外送訂單金額：0</div>
+                        <div>門市訂單筆數：0</div>
+                        <div>門市訂單金額：0</div>
+                        <div>合計訂單總額：0</div>
+
+                    </div>
+                    <div class="col-lg-6">
+                        <div>定單取消筆數：0</div>
+                        <div>定單取消金額：0</div>
+                        <div>銷售第一名:NULL / 0 (杯)</div>
+                        <div>銷售第二名:NULL / 0 (杯)</div>
+                        <div>銷售第三名:NULL / 0 (杯)</div>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<div class="row">
+
+</div>
+
+</body>
+</html>
