@@ -1,17 +1,17 @@
 短網址:https://reurl.cc/z8ElAN
 
-前言
+前言<br />
 本專案利用AWS Elastic Beanstalk佈建Django專案。
 
-前置作業
-AWS Free Tier(一年期的免費帳號)
-Pycharm
-Anaconda
-Python 3.7
-pip
-virtualenv
-awsebcli
-awscli
+前置作業:<br />
+AWS Free Tier(一年期的免費帳號)<br />
+Pycharm<br />
+Anaconda<br />
+Python 3.7<br />
+pip<br />
+virtualenv<br />
+awsebcli<br />
+awscli<br />
 
 **A.Django專案建置到部署**
 
