@@ -68,6 +68,9 @@ pip install awscli
 11.初始化EB CLI 儲存庫
 > eb init -p python-3.7 django-project
 
+11.5 設定**.elasticbeanstalk**底下的**config.yml**中的服務區域
+> default_region: <你的服務區域>
+
 12.建立部署環境
 > eb create <your_env_name>-env
 
