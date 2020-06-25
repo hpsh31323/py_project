@@ -90,10 +90,11 @@ pip install awscli
 
 1.在AWS S3上新增**Bucket** (服務區域ex:us-west-2 )
 > aws s3api create-bucket \
-  --acl public-read \
-  --region <你的服務區域> \
-  --create-bucket-configuration LocationConstraint=<你的服務區域> \
-  --bucket <Your bucket name>
+>   --acl public-read \
+>   --region <你的服務區域> \
+>   --create-bucket-configuration LocationConstraint=<你的服務區域> \
+>   --bucket < Your bucket name> \
+
   
   執行後會出現以下訊息
   > {\
