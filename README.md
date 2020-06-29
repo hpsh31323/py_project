@@ -72,7 +72,7 @@ pip install awscli
 > default_region: <你的服務區域>
 
 12.建立部署環境
-> eb create <your_env_name>-env
+> eb create < your_env_name>-env
 
 13.查看部署環境並複製**CNAME**的訊息，它代表你的網域位置。
 > eb status
@@ -98,7 +98,7 @@ pip install awscli
   
   執行後會出現以下訊息
   > {\
-    "Location": "http:// <Your bucket name>.s3.amazonaws.com/"\
+    "Location": "http:// < Your bucket name>.s3.amazonaws.com/"\
 }
 
 2.將新增的**Bucket URL**設定到環境中
@@ -135,7 +135,7 @@ pip install awscli
 
 上傳成功後會出現<br />
 
-> 130 static files copied to '...<Your static path>'.
+> 130 static files copied to '...< Your static path>'.
 
 6.同步static資料夾，將本地static資料夾中的新增檔案同步上傳至s3
 
