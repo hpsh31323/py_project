@@ -20,19 +20,9 @@ from py_start.drinkstore_forecast.getData import get_avg_temp_tpi, get_order_amo
 
 
 def task1_get_past_TempAndOrder(days):
-    q1 = Queue()
-    q2 = Queue()
-    q3 = Queue()
-    t1 = threading.Thread(target=get_avg_temp_tpi, args=(q1,))
-    t2 = threading.Thread(target=get_order_amount, args=(q2, days))
-    t3 = threading.Thread(target=get_future_temp, args=(q3,))
-    t1.start()
-    t2.start()
-    t3.start()
-    t1.join()
-    t2.join()
-    dict_year_temp = q1.get()
-    dict_order_amount = q2.get()
+
+    dict_year_temp = get_avg_temp_tpi()
+    dict_order_amount = get_order_amount()
     dict_max = dict_year_temp["dict_max"]
     dict_min = dict_year_temp["dict_min"]
     dict_avg = dict_year_temp["dict_avg"]
@@ -55,8 +45,7 @@ def task1_get_past_TempAndOrder(days):
 
     exportImg(list_keys, list_avg_temps, list_orders)
 
-    t3.join()
-    dict_future_temp = q3.get()
+    dict_future_temp = get_future_temp()
     return dict({"list_max_temps": list_max_temps, "list_min_temps": list_min_temps, "list_orders": list_orders,
                  "dict_future_temp": dict_future_temp})
 
@@ -114,16 +103,8 @@ def task2_forecasting_Order(list_max_temps, list_min_temps, list_orders, dict_fu
     # test_size 為切分 training data 和 testing data 的比例
     temps_train, temps_test, order_train, order_test = train_test_split(df_temps_p, df_Order, test_size=0.3)
 
-    q1 = Queue()
-    q2 = Queue()
-    t1 = threading.Thread(target=train_ElasticNet, args=(q1, temps_train, order_train))
-    t2 = threading.Thread(target=train_Lasso, args=(q2, temps_train, order_train))
-    t1.start()
-    t2.start()
-    t1.join()
-    t2.join()
-    elastic_net = q1.get()
-    lasso = q2.get()
+    elastic_net = train_ElasticNet()
+    lasso = train_Lasso()
 
     # 準確率
     elastic_net_score = elastic_net.score(temps_test, order_test.values.ravel().astype('int'))
@@ -136,7 +117,7 @@ def task2_forecasting_Order(list_max_temps, list_min_temps, list_orders, dict_fu
     return dict_re
 
 
-def train_ElasticNet(q, temps_train, order_train):
+def train_ElasticNet(temps_train, order_train):
     # 初始化 ElasticNet 實例
     elastic_net = ElasticNet()
     # 使用 fit 來建置模型，其參數接收 training data matrix, testing data array，所以進行 order_train.values.ravel() Data Frame 轉換
@@ -144,10 +125,10 @@ def train_ElasticNet(q, temps_train, order_train):
     elastic_net.fit(temps_train, order_train.values.ravel().astype('int'))
     ElasticNet(alpha=1.0, l1_ratio=0.5, fit_intercept=True, normalize=False, precompute=False, max_iter=1000,
                copy_X=True, tol=0.0001, warm_start=False, positive=False, random_state=None, selection='cyclic')
-    return q.put(elastic_net)
+    return elastic_net
 
 
-def train_Lasso(q, temps_train, order_train):
+def train_Lasso(temps_train, order_train):
     # 初始化 Lasso 實例
     lasso = Lasso()
 
@@ -157,4 +138,4 @@ def train_Lasso(q, temps_train, order_train):
     Lasso(alpha=1.0, fit_intercept=True, normalize=False, precompute=False, copy_X=True, max_iter=1000,
           tol=0.0001, warm_start=False, positive=False, random_state=None, selection='cyclic')
 
-    return q.put(lasso)
+    return lasso

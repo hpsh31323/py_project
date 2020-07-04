@@ -9,7 +9,7 @@ import requests
 
 
 # 取臺北年間每日高低溫資料
-def get_avg_temp_tpi(q):
+def get_avg_temp_tpi():
     url = "https://opendata.cwb.gov.tw/fileapi/v1/opendataapi/C-B0024-002?Authorization=CWB-F56CCF8D-5917-4BC0-81A0" \
           "-BA01A58465E6&downloadType=WEB&format=JSON"
     dict_max = {}
@@ -32,11 +32,11 @@ def get_avg_temp_tpi(q):
                     dict_avg.update({time1: avg_temp})
                 break
 
-    return q.put({"dict_max": dict_max, "dict_min": dict_min, "dict_avg": dict_avg})
+    return {"dict_max": dict_max, "dict_min": dict_min, "dict_avg": dict_avg}
 
 
 # 取商店銷售資料
-def get_order_amount(q, days=365):
+def get_order_amount(days=365):
     endDate = (datetime.date.today() - datetime.timedelta(days=1)).strftime("%Y-%m-%d")
     startDate = (datetime.date.today() - datetime.timedelta(days=days)).strftime("%Y-%m-%d")
     url = "http://drinkstore-dev3.ap-southeast-1.elasticbeanstalk.com/api/orders/amount/" + startDate + "/" + endDate
@@ -53,11 +53,11 @@ def get_order_amount(q, days=365):
         else:
             dict1.update({day: amount})
 
-    return q.put(dict1)
+    return dict1
 
 
 # 取未來一週氣溫預測
-def get_future_temp(q):
+def get_future_temp():
     url1 = "https://opendata.cwb.gov.tw/fileapi/v1/opendataapi/F-C0032-005?Authorization=CWB-F56CCF8D-5917-4BC0-81A0-BA01A58465E6&downloadType=WEB&format=JSON"
     with requests.Session() as s:
         download = s.get(url1)
@@ -93,4 +93,4 @@ def get_future_temp(q):
         dict_future_temp = {}
         dict_future_temp.update({"max": dict_maxT})
         dict_future_temp.update({"min": dict_minT})
-        return q.put(dict_future_temp)
+        return dict_future_temp
