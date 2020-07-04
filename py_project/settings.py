@@ -124,6 +124,11 @@ STATIC_URL = "/static/"
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
 """
 
+
+"""
+本地開發用:STATICFILES_DIRS = [os.path.join(BASE_DIR, "static"),]
+正式環境用:STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+"""
 STATIC_URL = os.getenv('STATIC_URL', '/static/')
-#STATICFILES_DIRS = [os.path.join(BASE_DIR, "static"),]
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static"),]
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static')

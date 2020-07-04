@@ -17,13 +17,14 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url
 
-from py_start.views import project_index, pos_system_index, inner_login_page, manager_index
+from py_start.views import project_index, pos_system_index, inner_login_page, manager_index, forecast
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^$', project_index),
     url(r'^pos_system_index/$', pos_system_index),
     url(r'^manager_index/$', manager_index),
-    url(r'^inner_login_page/$', inner_login_page)
+    url(r'^inner_login_page/$', inner_login_page),
+    url(r'^forecast/$', forecast),
 
 ]
