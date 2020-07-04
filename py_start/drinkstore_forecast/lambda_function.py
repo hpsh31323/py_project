@@ -22,4 +22,4 @@ def forecasting():
     end = time()
     total_time = "total cost %f sec" % (end - start)
 
-    return {"task1": task1, "task2": task2, "total_time": total_time}
+    # return {"task1": task1, "task2": task2, "total_time": total_time}

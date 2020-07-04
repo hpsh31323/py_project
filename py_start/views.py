@@ -1,3 +1,5 @@
+import threading
+
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 
@@ -22,5 +24,7 @@ def inner_login_page(request):
 
 
 def forecast(request):
-    dict1 = forecasting()
-    return JsonResponse(dict1)
+
+    t1 = threading.Thread(target=forecasting)
+    t1.start()
+    return render(request, "index.html", locals())
