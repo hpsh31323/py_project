@@ -19,38 +19,7 @@ from py_start.drinkstore_forecast.exportImg import exportImg
 from py_start.drinkstore_forecast.getData import get_avg_temp_tpi, get_order_amount, get_future_temp
 
 
-def task1_get_past_TempAndOrder(days):
-
-    dict_year_temp = get_avg_temp_tpi()
-    dict_order_amount = get_order_amount()
-    dict_max = dict_year_temp["dict_max"]
-    dict_min = dict_year_temp["dict_min"]
-    dict_avg = dict_year_temp["dict_avg"]
-
-    key_set = sorted(dict_order_amount.keys()) if len(dict_order_amount.keys()) < len(dict_max.keys()) else sorted(
-        dict_max.keys())
-    list_keys = []
-    list_avg_temps = []
-    list_max_temps = []
-    list_min_temps = []
-    list_orders = []
-    for key in key_set:
-        if not (key in (dict_max if len(dict_order_amount.keys()) < len(dict_max.keys()) else dict_order_amount)):
-            continue
-        list_keys.append(key)
-        list_max_temps.append(eval(dict_max[key]))
-        list_min_temps.append(eval(dict_min[key]))
-        list_avg_temps.append(eval(dict_avg[key]))
-        list_orders.append(dict_order_amount[key])
-
-    exportImg(list_keys, list_avg_temps, list_orders)
-
-    dict_future_temp = get_future_temp()
-    return dict({"list_max_temps": list_max_temps, "list_min_temps": list_min_temps, "list_orders": list_orders,
-                 "dict_future_temp": dict_future_temp})
-
-
-def task2_forecasting_Order(list_max_temps, list_min_temps, list_orders, dict_future_temp):
+def forecasting_Order(list_max_temps, list_min_temps, list_orders, dict_future_temp):
     dict_re = {}
     np_max_temps = []
     np_min_temps = []
@@ -103,8 +72,8 @@ def task2_forecasting_Order(list_max_temps, list_min_temps, list_orders, dict_fu
     # test_size 為切分 training data 和 testing data 的比例
     temps_train, temps_test, order_train, order_test = train_test_split(df_temps_p, df_Order, test_size=0.3)
 
-    elastic_net = train_ElasticNet()
-    lasso = train_Lasso()
+    elastic_net = train_ElasticNet(temps_train, order_train)
+    lasso = train_Lasso(temps_train, order_train)
 
     # 準確率
     elastic_net_score = elastic_net.score(temps_test, order_test.values.ravel().astype('int'))
