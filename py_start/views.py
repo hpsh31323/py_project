@@ -2,8 +2,6 @@ import threading
 
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
-
-# Create your views here.
 from py_start.drinkstore_forecast.lambda_function import forecasting
 
 
@@ -25,6 +23,5 @@ def inner_login_page(request):
 
 def forecast(request):
 
-    t1 = threading.Thread(target=forecasting)
-    t1.start()
+    forecasting()
     return render(request, "index.html", locals())
