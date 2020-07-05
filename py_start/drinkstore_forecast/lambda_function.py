@@ -1,10 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import json
-from time import time
-
-from py_start.drinkstore_forecast.data_analysis import task1_get_past_TempAndOrder, task2_forecasting_Order
-from py_start.drinkstore_forecast.exportImg import exportImg, exportImgF
+import boto3
+from py_start.drinkstore_forecast.data_analysis import forecasting_Order
 
 
 def forecasting():

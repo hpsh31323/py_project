@@ -11,12 +11,6 @@ import pandas as pd
 # 引入 train_test_split 分割方法
 from sklearn.linear_model import ElasticNet, Lasso
 from sklearn.model_selection import train_test_split
-# 引入 KNeighbors 模型
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.svm import LinearSVC
-
-from py_start.drinkstore_forecast.exportImg import exportImg
-from py_start.drinkstore_forecast.getData import get_avg_temp_tpi, get_order_amount, get_future_temp
 
 
 def forecasting_Order(list_max_temps, list_min_temps, list_orders, dict_future_temp):
