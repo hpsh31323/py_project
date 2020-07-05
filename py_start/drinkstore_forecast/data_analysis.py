@@ -75,8 +75,9 @@ def forecasting_Order(list_max_temps, list_min_temps, list_orders, dict_future_t
     # 預測值
     elastic_net_f = elastic_net.predict(df_temps_f)
     lasso_f = lasso.predict(df_temps_f)
-    dict_re.update({"elastic_net_score": elastic_net_score, "lasso_score": lasso_score, "elastic_net_f": elastic_net_f,
-                    "lasso_f": lasso_f})
+    dict_re.update({"elastic_net_score": elastic_net_score.tolist(), "lasso_score": lasso_score.tolist(),
+                    "elastic_net_f": elastic_net_f.tolist(),
+                    "lasso_f": lasso_f.tolist()})
     return dict_re
 
 
