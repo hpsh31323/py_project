@@ -18,7 +18,11 @@ def get_avg_temp_tpi():
 
     with requests.Session() as s:
         download = s.get(url)
-        data1 = download.json().get("cwbopendata").get('dataset').get('location')
+        data1 = download.json()
+        data1 = data1.get("cwbopendata")
+        data1 = data1.get('dataset')
+        data1 = dara1.get('location')
+
         for d in data1:
             if d['stationId'] == '466920':
                 data2 = d['weatherElement'][1]['time']
