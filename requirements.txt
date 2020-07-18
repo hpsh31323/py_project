@@ -7,9 +7,9 @@ docker-compose==1.25.5
 pytz==2020.1
 PyYAML==5.3.1
 sqlparse==0.3.1
-numpy==1.19.0
-pandas==1.0.5
+numpy~=1.18.1
+pandas~=1.0.1
 sklearn==0.0
 requests==2.24.0
 matplotlib==3.2.2
-scikit-learn==0.23.1
+scikit-learn~=0.22.1
