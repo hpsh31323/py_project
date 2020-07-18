@@ -13,4 +13,4 @@ sklearn==0.0
 requests==2.24.0
 matplotlib==3.2.2
 scikit-learn~=0.22.1
-boto
+boto3
