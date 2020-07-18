@@ -48,6 +48,3 @@ def forecasting():
     s3 = boto3.client('s3')
     serializedMyData = json.dumps(forecast)
     s3.put_object(Body=serializedMyData, Bucket='drinkstore-static', Key="json/" + "forecast.json")
-
-
-    # return {"task1": task1, "task2": task2, "total_time": total_time}
