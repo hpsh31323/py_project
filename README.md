@@ -1,4 +1,3 @@
-短網址:https://reurl.cc/z8ElAN
 
 前言<br />
 本專案利用AWS Elastic Beanstalk佈建Django專案。
