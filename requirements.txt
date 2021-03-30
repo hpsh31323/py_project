@@ -2,7 +2,7 @@ asgiref==3.2.7
 blessed==1.17.8
 cached-property==1.5.1
 certifi==2020.4.5.1
-Django==3.0.3
+Django==3.0.12
 docker-compose==1.25.5
 pytz==2020.1
 PyYAML==5.3.1
