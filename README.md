@@ -140,7 +140,7 @@ pip install awscli
 
 > aws s3 sync static s3://<Your bucket name> --delete
 
-Finish
+Finish 2020/08/02
 
 
 
